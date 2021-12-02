@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/textColorLink"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
     <TextView
@@ -17,6 +17,7 @@
 
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/white"
         android:textSize="48sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/tomap"
@@ -74,6 +75,7 @@
         android:layout_marginEnd="104dp"
         android:text="語音提醒:\n關閉"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +89,7 @@
         android:layout_marginBottom="192dp"
         android:text="及時定位:\n關閉"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -41,12 +41,12 @@ class AccidentActive : AppCompatActivity() {
 
         Executors.newSingleThreadExecutor().execute() {
 
-            val data=database.accidentdao().findBylev()
-            database.accidentdao().delete(data)
+//            val data=database.accidentdao().findBylev()
+//            database.accidentdao().delete(data)
 
 
-//            for(acc in accidentdata)
-//                database.accidentdao().add(acc)
+            for(acc in accidentdata)
+                database.accidentdao().add(acc)
 
 
 
