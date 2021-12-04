@@ -19,9 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P1">
         <service
-            android:name=".backgroundservice"
+            android:name=".MyService2"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".backgroundservice"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".AccidentActive"

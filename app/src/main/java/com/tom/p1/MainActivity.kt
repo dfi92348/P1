@@ -17,8 +17,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -33,7 +35,8 @@ class MainActivity : AppCompatActivity(){
       val TAG = MainActivity::class.java.simpleName
   }
 
-    private lateinit var notificationManager: NotificationManager
+    //private lateinit var notificationManager: NotificationManager
+  //  @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -63,38 +66,11 @@ class MainActivity : AppCompatActivity(){
             startActivity(intent)
 
         }
-
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel =
-                NotificationChannel(packageName, "Demo", NotificationManager.IMPORTANCE_HIGH)
-            notificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-
-
+//
 
     }
 
-
-    fun normal(view: View) {
-
-
-
-        val notification = NotificationCompat.Builder(this, packageName)
-            .setContentTitle("一般通知")
-            .setContentText("收到一條消息")
-            //.setSmallIcon(R.drawable.logo)
-           // .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.icon))
-            .setWhen(System.currentTimeMillis())
-            //.setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
-
-        notificationManager.notify((0..10000).random(), notification)
-    }
+//
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         data?.extras?.let {
@@ -109,24 +85,18 @@ class MainActivity : AppCompatActivity(){
                 findViewById<TextView>(R.id.location).text=
                     "語音提醒:\n ${it.getString("ice")}"
 
-                val workRequest= OneTimeWorkRequestBuilder<MyWorker>()
-                    .setInitialDelay(20,TimeUnit.SECONDS)
-                    .build()
-                WorkManager.getInstance(this)
-                    .enqueue(workRequest)
+
+
+                startService(Intent(this,MyService::class.java))
 
                 val sdf = SimpleDateFormat("HH:mm:ss")
                 Log.d(TAG,"start: ${sdf.format(Date())}")
+                startService(Intent(this,MyService2::class.java))
 
+
+                }
             }
         }
-    }
-
-
-
-
-
-
 
     fun showMaps() {
         val intent = Intent(this, MapsActivity::class.java)
@@ -135,3 +105,8 @@ class MainActivity : AppCompatActivity(){
 
 
 }
+
+
+
+
+
