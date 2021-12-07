@@ -24,7 +24,7 @@ class secactivity : AppCompatActivity() {
 
                 //宣告 Bundle
                 val b = Bundle()
-                //取得 EditText 字串內容，把飲料名稱、甜度與冰塊資訊放入 Bundle
+
 
                 b.putString("sugar", radioGroup.findViewById<RadioButton>
                     (radioGroup.checkedRadioButtonId).text.toString())
