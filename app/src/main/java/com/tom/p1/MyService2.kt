@@ -50,26 +50,32 @@ class MyService2 : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Thread{
-            while (true) {
-                Thread.sleep(10000)
-            var soundpool = SoundPool.Builder()
-                .setMaxStreams(8)
-                .build()
 
 
 
-            var C = soundpool.load(this, R.raw.sd005, 1)
-                soundpool.play(C, 1.0f, 1.0f, 0, 0, 1.0f)
+            Thread {
+
+                while (GlobalVariable.gettf()==true && GlobalVariable.opensound==true) {
+
+                    var soundpool = SoundPool.Builder()
+                        .setMaxStreams(8)
+                        .build()
 
 
-                sendRequest()
+                    var C = soundpool.load(this, R.raw.sd005, 1)
+                    Thread.sleep(1000)
+                    soundpool.play(C, 1.0f, 1.0f, 0, 0, 1.0f)
 
-                val sdf = SimpleDateFormat("HH:mm:ss")
-                Log.d(MyService2.TAG, "work2: ${sdf.format(Date())}")
 
-            }
-        }.start()
+                    sendRequest()
+
+                    val sdf = SimpleDateFormat("HH:mm:ss")
+                    Log.d(MyService2.TAG, "work2: ${sdf.format(Date())}")
+                    Thread.sleep(9000)
+                }
+            }.start()
+
+
     }
 
 

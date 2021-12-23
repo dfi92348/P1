@@ -20,18 +20,29 @@ class MyService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-    Thread{
-        try {
-           while(true) {
-               Thread.sleep(10000)
-               val sdf = SimpleDateFormat("HH:mm:ss")
-               Log.d(MyService.TAG, "work: ${sdf.format(Date())}")
-               noti()
-           }
-        }catch (e:InterruptedException){
-            e.printStackTrace()
-        }
-    }.start()
+        Log.d(MyService.TAG, "workwork")
+
+
+            Log.d("123", "1223344567")
+
+                Thread {
+                    try {
+                        while (GlobalVariable.gettf()==true && GlobalVariable.opennoti==true) {
+
+                            val sdf = SimpleDateFormat("HH:mm:ss")
+                            Log.d(MyService.TAG, "work: ${sdf.format(Date())}")
+
+                            noti()
+                            Thread.sleep(10000)
+                        }
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }.start()
+               // Thread.sleep(10000)
+
+
+
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
