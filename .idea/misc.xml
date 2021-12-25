@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.141015625" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/accident_row.xml" value="0.264" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_accident_active.xml" value="0.1296875" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_maps.xml" value="0.1296875" />
-        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_secactivity.xml" value="0.264" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_secactivity.xml" value="0.176" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/buttonround.xml" value="0.155859375" />
       </map>
     </option>
   </component>
@@ -16,5 +18,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>

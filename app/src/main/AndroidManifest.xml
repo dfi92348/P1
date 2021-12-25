@@ -24,6 +24,10 @@
         android:theme="@style/Theme.P1"
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@drawable/buttonround" />
+
         <service
             android:name=".MyurlService3"
             android:enabled="true"

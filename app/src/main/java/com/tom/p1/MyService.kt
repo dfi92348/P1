@@ -20,13 +20,14 @@ class MyService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d(MyService.TAG, "workwork")
 
 
-            Log.d("123", "1223344567")
+
+
 
                 Thread {
                     try {
+                        Log.d(MyService.TAG, "workwork")
                         while (GlobalVariable.gettf()==true && GlobalVariable.opennoti==true) {
 
                             val sdf = SimpleDateFormat("HH:mm:ss")
@@ -46,6 +47,7 @@ class MyService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
         return START_NOT_STICKY
     }
 

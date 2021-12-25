@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startService(Intent(this, MyLocService::class.java))
+
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         toList.setOnClickListener {
 
+
             val intent = Intent(this, AccidentActive::class.java)
             startActivity(intent)
 
@@ -97,7 +98,9 @@ class MainActivity : AppCompatActivity() {
             data?.extras?.let {
                 //驗證發出對象，確認 SecActivity 執行的狀態
 
-
+                if (GlobalVariable.running == false){
+                    startService(Intent(this, MyLocService::class.java))
+            }
                 if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
                     //讀取 Bundle 資料
                     findViewById<TextView>(R.id.voice).text =

@@ -8,6 +8,7 @@ class GlobalVariable : Application() {
          var torf: Boolean = false
          var opennoti:Boolean=false
         var opensound:Boolean=false
+        var running:Boolean=false
         //修改 變數値
         fun settf(tf : Boolean){
            torf = tf

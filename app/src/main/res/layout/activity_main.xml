@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/backimg"
     tools:context=".MainActivity">
 
     <TextView
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488" />
+        app:layout_constraintVertical_bias="0.344" />
 
     <Button
         android:id="@+id/tomap"
@@ -33,9 +33,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="180dp"
         android:layout_marginEnd="32dp"
-        android:background="#B6ADAD"
+        android:background="@drawable/buttonround"
         android:text="地圖中察看"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:layout_height="65dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:background="#B6ADAD"
+        android:background="@drawable/buttonround"
         android:text="表單中查看"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -64,7 +64,7 @@
         android:layout_height="65dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:background="#B6ADAD"
+        android:background="@drawable/buttonround"
         android:text="及時提醒設定"
         android:textAlignment="center"
         android:textSize="24sp"

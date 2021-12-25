@@ -56,8 +56,9 @@ public class MyLocService extends Service  implements LocationListener{
                        try {
                            Log.d("lo", "12");
 while (true) {
-    Thread.sleep(5000);
+
     getLocal();
+    Thread.sleep(3000);
     //  wait(endTime);
 }
                        } catch (Exception e) {
@@ -83,8 +84,9 @@ while (true) {
         /**沒有權限則返回*/
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+         return;
         }
+        GlobalVariable.Companion.setRunning(true);
         Log.d("lo", "123");
         lms = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -101,6 +103,7 @@ while (true) {
     /**監聽位置變化*/
 
     private void showLocation(Location location) { //將定位資訊顯示在畫面中
+
         if(location != null) {
             Double longitude = location.getLongitude();   //取得經度
             Double latitude = location.getLatitude();     //取得緯度
@@ -121,6 +124,8 @@ while (true) {
             Log.d("lo", String.valueOf("緯度:"+latitude));
         }
         else {
+            Log.d("lo", "noloc");
+
             Toast.makeText(this, "無法定位座標", Toast.LENGTH_LONG).show();
         }
     }
