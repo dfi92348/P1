@@ -58,7 +58,7 @@ public class MyLocService extends Service  implements LocationListener{
 while (true) {
 
     getLocal();
-    Thread.sleep(3000);
+    Thread.sleep(5000);
     //  wait(endTime);
 }
                        } catch (Exception e) {
@@ -87,16 +87,26 @@ while (true) {
          return;
         }
         GlobalVariable.Companion.setRunning(true);
-        Log.d("lo", "123");
+
+
         lms = (LocationManager) getSystemService(LOCATION_SERVICE);
+
 
         /**知道位置後..*/
 
 
         Criteria criteria = new Criteria();  //資訊提供者選取標準
+
         bestProvider = lms.getBestProvider(criteria, true);    //選擇精準度最高的提供者
+
+
+
         Location location = lms.getLastKnownLocation(bestProvider);
 
+        while (location==null) {
+          lms.requestLocationUpdates("gps", 60000, 1, this::onLocationChanged);
+        }
+        Log.d("lo", "okok");
         showLocation(location);
 //
     }
@@ -105,6 +115,7 @@ while (true) {
     private void showLocation(Location location) { //將定位資訊顯示在畫面中
 
         if(location != null) {
+            Log.d("lo", "inshowloc");
             Double longitude = location.getLongitude();   //取得經度
             Double latitude = location.getLatitude();     //取得緯度
             Log.d("lo", "1111");

@@ -69,7 +69,7 @@ public class MyurlService3 extends Service {
         Bundle bundle=intent.getExtras();
 
 
-//Bundle e = intent.getExtras();//取出來的是個陣列
+
 
 
 
@@ -79,13 +79,10 @@ public class MyurlService3 extends Service {
 
         Double testBundleString = bundle.getDouble("DATA_KEY2");
 
-//        Log.v("string=", String.valueOf(testBundleString));
-//
-//        Log.v("string=", String.valueOf(parcelableData ));
-//
-//        Log.d("HelloService","onStartCommand End");
+
         t1=parcelableData;
         t2=testBundleString;
+        Log.d("TEST", "inurl");
         Thread thread = new Thread(mutiThread);
 
         thread.start();
@@ -162,54 +159,57 @@ public class MyurlService3 extends Service {
             //longitude=per
 //             longitude=t1;
 //             dimensionality=t2;
-            try {
+//            try {
 //                Log.v("inrun", String.valueOf(t1));
 //
 //                Log.v("inrun", String.valueOf(t2));
-                URL puturl = new URL("https://140.136.151.140/data.php");
-                HttpsURLConnection putconnection=(HttpsURLConnection) puturl.openConnection();
-                putconnection.setRequestProperty("Charset", "UTF-8");
-                putconnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
-                putconnection.setRequestMethod("POST");
-                putconnection.setDoOutput(true);
-                putconnection.setDoInput(true);
-                putconnection.setUseCaches(false);
-                OutputStream os = putconnection.getOutputStream();
-                DataOutputStream out = new DataOutputStream(os);
-                JSONObject object = new JSONObject();
-                object.put("longitude",longitude);
-                object.put("dimensionality", dimensionality);
-                out.writeBytes(object.toString());
-                out.flush();
-                out.close();
-                os.flush();
-                os.close();
-
-                InputStream inputStream = putconnection.getInputStream();
-                BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
-                while((line = bufReader.readLine()) != null) {
-                    result=result+line+"\n";
-                }
-                inputStream.close();
-
-            } catch (Exception e ) {
-                result = e.toString();
-            }
-//            runOnUiThread(new Runnable() {
-//                public void run() {
-//                  //  textView.setText(result); // 更改顯示文字
+//                URL puturl = new URL("https://140.136.151.140/data.php");
+//                HttpsURLConnection putconnection=(HttpsURLConnection) puturl.openConnection();
+//                putconnection.setRequestProperty("Charset", "UTF-8");
+//                putconnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+//                putconnection.setRequestMethod("POST");
+//                putconnection.setDoOutput(true);
+//
+//                putconnection.setDoInput(true);
+//                putconnection.setUseCaches(false);
+//
+//                OutputStream os = putconnection.getOutputStream();
+//                Log.d("TEST", "somethingwrong");
+//                DataOutputStream out = new DataOutputStream(os);
+//
+//                JSONObject object = new JSONObject();
+//                object.put("longitude",longitude);
+//                object.put("dimensionality", dimensionality);
+//                out.writeBytes(object.toString());
+//                out.flush();
+//                out.close();
+//                os.flush();
+//                os.close();
+//
+//                InputStream inputStream = putconnection.getInputStream();
+//                BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
+//                while((line = bufReader.readLine()) != null) {
+//                    result=result+line+"\n";
 //                }
-//            });
+//
+//                inputStream.close();
+//
+//            } catch (Exception e ) {
+//
+//                result = e.toString();
+//            }
+
             result="true";
             if(result!= "false") {
-                Boolean b=true;
-                GlobalVariable.Companion.settf(b);
+
+                GlobalVariable.Companion.settf(true);
 
             }
-            if(GlobalVariable.Companion.getTorf()==true) {
+            if(GlobalVariable.Companion.getTorf()) {
                 Log.d("TEST", result);
             }else{
                 GlobalVariable.Companion.settf(false);
+                Log.d("TEST", result);
             }
         }
 

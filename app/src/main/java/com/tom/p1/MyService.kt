@@ -27,15 +27,17 @@ class MyService : Service() {
 
                 Thread {
                     try {
-                        Log.d(MyService.TAG, "workwork")
-                        while (GlobalVariable.gettf()==true && GlobalVariable.opennoti==true) {
-
+                        while (GlobalVariable.opennoti == true){
+                            Log.d(MyService.TAG, "openti")
+                          if(GlobalVariable.gettf() == true ) {
+                              Log.d(MyService.TAG, "ist")
                             val sdf = SimpleDateFormat("HH:mm:ss")
                             Log.d(MyService.TAG, "work: ${sdf.format(Date())}")
 
                             noti()
                             Thread.sleep(10000)
                         }
+                    }
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     }

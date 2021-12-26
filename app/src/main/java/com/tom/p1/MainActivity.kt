@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val TA = MainActivity::class.java.simpleName
+        val REQUEST_CAMERA=50
+        var login=false
     }
 
 
@@ -38,7 +40,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+      if(!login){
+          Intent(this, LoginActivity::class.java).apply {
+              startActivity(this)
+          }
+      }
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -50,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-
+        val Creat=findViewById<Button>(R.id.creat)
         val toMap = findViewById<Button>(R.id.tomap)
         val toList = findViewById<Button>(R.id.tolist)
         val Remind = findViewById<Button>(R.id.remind)
@@ -77,6 +83,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+        Creat.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
     }
 
 
