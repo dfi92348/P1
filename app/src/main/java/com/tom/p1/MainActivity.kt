@@ -14,12 +14,9 @@ import java.util.*
 import androidx.core.app.ActivityCompat
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.NonNull
-
-
-
-
-
+import androidx.appcompat.app.AlertDialog
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-      if(!login){
+      if(login==false){
+          login=true
           Intent(this, LoginActivity::class.java).apply {
               startActivity(this)
           }
@@ -85,6 +83,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         Creat.setOnClickListener {
+           var test=GlobalVariable.lat
+            var test2=GlobalVariable.lon
+            runOnUiThread {
+                Toast.makeText(this@MainActivity, test.toString()+" " +test2.toString(), Toast.LENGTH_LONG).show()
+            }
             val intent = Intent(this, CameraActivity::class.java)
             startActivity(intent)
         }

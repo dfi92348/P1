@@ -1,5 +1,6 @@
 package com.tom.p1;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
@@ -50,8 +51,8 @@ public class MyurlService3 extends Service {
 
 
     String result="";
-    Double t1;
-    Double t2;
+//    Double t1;
+//    Double t2;
     public MyurlService3() {
     }
 
@@ -80,8 +81,7 @@ public class MyurlService3 extends Service {
         Double testBundleString = bundle.getDouble("DATA_KEY2");
 
 
-        t1=parcelableData;
-        t2=testBundleString;
+
         Log.d("TEST", "inurl");
         Thread thread = new Thread(mutiThread);
 
@@ -89,15 +89,7 @@ public class MyurlService3 extends Service {
 
 
         stopSelf();  // 停止Service
-//        handler=new Handler();
-//        super.onCreate();
- //       Intent inten=new Intent(this,MyService.class);
-       // Intent intent2=new Intent(this,MyService2.class);
-//        if(result!="False") {
-//
-//            startService(inten);
-//           // startService(intent2);
-//        }
+
 
 
         return START_STICKY;
@@ -157,47 +149,47 @@ public class MyurlService3 extends Service {
             double longitude=121.5890;
             double dimensionality=25.0552;
             //longitude=per
-//             longitude=t1;
-//             dimensionality=t2;
-//            try {
-//                Log.v("inrun", String.valueOf(t1));
-//
-//                Log.v("inrun", String.valueOf(t2));
-//                URL puturl = new URL("https://140.136.151.140/data.php");
-//                HttpsURLConnection putconnection=(HttpsURLConnection) puturl.openConnection();
-//                putconnection.setRequestProperty("Charset", "UTF-8");
-//                putconnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
-//                putconnection.setRequestMethod("POST");
-//                putconnection.setDoOutput(true);
-//
-//                putconnection.setDoInput(true);
-//                putconnection.setUseCaches(false);
-//
-//                OutputStream os = putconnection.getOutputStream();
-//                Log.d("TEST", "somethingwrong");
-//                DataOutputStream out = new DataOutputStream(os);
-//
-//                JSONObject object = new JSONObject();
-//                object.put("longitude",longitude);
-//                object.put("dimensionality", dimensionality);
-//                out.writeBytes(object.toString());
-//                out.flush();
-//                out.close();
-//                os.flush();
-//                os.close();
-//
-//                InputStream inputStream = putconnection.getInputStream();
-//                BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
-//                while((line = bufReader.readLine()) != null) {
-//                    result=result+line+"\n";
-//                }
-//
-//                inputStream.close();
-//
-//            } catch (Exception e ) {
-//
-//                result = e.toString();
-//            }
+             longitude=GlobalVariable.Companion.getLon();
+             dimensionality=GlobalVariable.Companion.getLat();
+            try {
+
+                URL puturl = new URL("https://140.136.151.140/data.php");
+                HttpsURLConnection putconnection=(HttpsURLConnection) puturl.openConnection();
+                putconnection.setRequestProperty("Charset", "UTF-8");
+                putconnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+                putconnection.setRequestMethod("POST");
+                putconnection.setDoOutput(true);
+
+                putconnection.setDoInput(true);
+                putconnection.setUseCaches(false);
+
+                OutputStream os = putconnection.getOutputStream();
+
+                DataOutputStream out = new DataOutputStream(os);
+
+                JSONObject object = new JSONObject();
+                object.put("longitude",longitude);
+                object.put("dimensionality", dimensionality);
+                out.writeBytes(object.toString());
+                out.flush();
+                out.close();
+                os.flush();
+                os.close();
+
+                InputStream inputStream = putconnection.getInputStream();
+                BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
+                while((line = bufReader.readLine()) != null) {
+                    result=result+line+"\n";
+                }
+
+                inputStream.close();
+
+
+
+            } catch (Exception e ) {
+
+                result = e.toString();
+            }
 
             result="true";
             if(result!= "false") {

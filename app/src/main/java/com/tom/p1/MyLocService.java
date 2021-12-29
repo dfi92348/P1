@@ -56,8 +56,47 @@ public class MyLocService extends Service  implements LocationListener{
                        try {
                            Log.d("lo", "12");
 while (true) {
+    Log.d("lo", "12345");
+    /**沒有權限則返回*/
+    if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+            checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        Log.d("lo", "nopermission");
+        return;
+    }
+    GlobalVariable.Companion.setRunning(true);
 
-    getLocal();
+//        Intent i = new Intent(this,MyurlService3.class);
+//        i.putExtra("DATA_KEY1",123 );
+//        i.putExtra("DATA_KEY2",456);
+//        startService(i);
+//
+    lms = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+
+    /**知道位置後..*/
+
+
+    Criteria criteria = new Criteria();  //資訊提供者選取標準
+    Log.d("lo", "somewrong");
+    bestProvider = lms.getBestProvider(criteria, true);    //選擇精準度最高的提供者
+
+    Log.d("lo", "okok");
+
+    Location location = lms.getLastKnownLocation(bestProvider);
+
+    while (location==null) {
+        Log.d("lo", "looping");
+       // location=lms.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, (android.location.LocationListener) LocationListener);
+
+
+        Log.d("lo", "looping2");
+    }
+
+
+
+
+    showLocation(location);
+    Log.d("lo", "12345");
     Thread.sleep(5000);
     //  wait(endTime);
 }
@@ -84,33 +123,69 @@ while (true) {
         /**沒有權限則返回*/
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("lo", "nopermission");
          return;
         }
         GlobalVariable.Companion.setRunning(true);
 
-
-        lms = (LocationManager) getSystemService(LOCATION_SERVICE);
+//        Intent i = new Intent(this,MyurlService3.class);
+//        i.putExtra("DATA_KEY1",123 );
+//        i.putExtra("DATA_KEY2",456);
+//        startService(i);
+//
+       lms = (LocationManager) getSystemService(LOCATION_SERVICE);
 
 
         /**知道位置後..*/
 
 
         Criteria criteria = new Criteria();  //資訊提供者選取標準
-
+        Log.d("lo", "somewrong");
         bestProvider = lms.getBestProvider(criteria, true);    //選擇精準度最高的提供者
 
+        Log.d("lo", "okok");
 
-
-        Location location = lms.getLastKnownLocation(bestProvider);
+        Location location = lms.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         while (location==null) {
-          lms.requestLocationUpdates("gps", 60000, 1, this::onLocationChanged);
+            Log.d("lo", "looping");
+            //location = lms.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            Log.d("lo", "looping2");
         }
-        Log.d("lo", "okok");
+
+
+
+
         showLocation(location);
 //
     }
+
+    private final LocationListener LocationListener = new LocationListener()
+    {
+
+        @Override
+        public void onLocationChanged(Location location){}
+        //GPS移動的時候
+//        @Override
+//        public void onProviderDisabled(String provider)
+//        @Override
+//        public void onProviderEnabled(String provider)
+//
+//        @Override
+//        public void onStatusChanged(String provider, int status, Bundle extras)
+////gps定位完成沒偵測
+    };
+
+
+
+
     /**監聽位置變化*/
+
+
+
+
+
 
     private void showLocation(Location location) { //將定位資訊顯示在畫面中
 
@@ -119,6 +194,8 @@ while (true) {
             Double longitude = location.getLongitude();   //取得經度
             Double latitude = location.getLatitude();     //取得緯度
             Log.d("lo", "1111");
+            GlobalVariable.Companion.setLon(longitude);
+            GlobalVariable.Companion.setLat(latitude);
 
 //new一個Bundle物件，並將要傳遞的資料傳入
 
@@ -135,6 +212,9 @@ while (true) {
             Log.d("lo", String.valueOf("緯度:"+latitude));
         }
         else {
+
+
+
             Log.d("lo", "noloc");
 
             Toast.makeText(this, "無法定位座標", Toast.LENGTH_LONG).show();

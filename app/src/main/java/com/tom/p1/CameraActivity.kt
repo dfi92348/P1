@@ -34,7 +34,16 @@ class CameraActivity : AppCompatActivity() {
 
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
 
+
+        transAppButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
+
+
 
     // 通過 intent 使用 Camera
     private fun takeImageFromCameraWithIntent() {
@@ -62,6 +71,8 @@ class CameraActivity : AppCompatActivity() {
     private val albumAppButtonHandler = View.OnClickListener { view ->
         takeImageFromAlbumWithIntent()
     }
+
+
 
     private fun displayImage(bitmap: Bitmap) {
         imageView.setImageBitmap(bitmap)

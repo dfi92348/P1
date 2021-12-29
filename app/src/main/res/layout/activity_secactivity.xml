@@ -13,7 +13,7 @@
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="616dp"
+        android:layout_marginTop="532dp"
         android:text="定位"
         android:textColor="@color/white"
         android:textSize="50sp"
@@ -66,13 +66,13 @@
         android:id="@+id/textView3"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="132dp"
         android:text="語音提示"
 
         android:textColor="@color/white"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,13 +119,13 @@
         android:id="@+id/btn_send"
         android:layout_width="266dp"
         android:layout_height="87dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/buttonround"
         android:text="送出"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.438"
         app:layout_constraintStart_toStartOf="parent" />
 
 
