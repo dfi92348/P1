@@ -1,46 +1,141 @@
 package com.tom.p1
 
+import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
+import kotlinx.android.synthetic.main.activity_accident_active.*
+import java.lang.Exception
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
+import javax.net.ssl.*
+import org.json.JSONObject
+import java.io.*
+import java.net.URL
+
 
 class AccidentActive : AppCompatActivity() {
+    var result = ""
+    var sum = arrayOfNulls<String>(100)
+    var place = arrayOfNulls<String>(100)
+    var c= arrayListOf("")
+    var d=arrayListOf("")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        handleSSLHandshake();
         setContentView(R.layout.activity_accident_active)
+
+
+        val thread = Thread(mutiThread)
+        thread.start()
+
+
         //將變數與 XML 元件綁定
-        val spinner = findViewById<Spinner>(R.id.spinner)
+       // val spinner = findViewById<Spinner>(R.id.spinner)
         //val gridView = findViewById<GridView>(R.id.gridView)
         val listView = findViewById<ListView>(R.id.listView)
-        val count = ArrayList<String>() //儲存購買數量資訊
-        val item = ArrayList<Item>() //儲存水果資訊
-        val priceRange = IntRange(10, 100) //建立價格範圍
-        val array =
-            resources.obtainTypedArray(R.array.image_list) //從 R 類別讀取圖檔
-        for(i in 0 until 100) {
-            val photo = array.getResourceId(0,0) //水果圖片 Id
-            val name = "水果${i+1}" //水果名稱
-            val price = priceRange.random() //亂數產生價格
-            count.add("${i+1}個") //新增可購買數量資訊
-            item.add(Item(photo, name, price)) //新增水果資訊
-        }
-        array.recycle() //釋放圖檔資源
-        //建立 ArrayAdapter 物件，並傳入字串與 simple_list_item_1.xml
-        spinner.adapter = ArrayAdapter<String>(this,
-            android.R.layout.simple_list_item_1, count)
-        //設定橫向顯示列數
-        //gridView.numColumns = 3
-        //建立 MyAdapter 物件，並傳入 adapter_vertical 作為畫面
-       // gridView.adapter = MyAdapter(this, item, R.layout.adapter_vertical)
-        //建立 MyAdapter 物件，並傳入 adapter_horizontal 作為畫面
-        listView.adapter = MyAdapter(this, item,
-            R.layout.adapter_horizontal)
+
+
+
+
+
+
+         Thread.sleep(3000)
+
+
+
+        listView.adapter =  ArrayAdapter(this,
+            android.R.layout.simple_list_item_1,c)
     }
+
+
+    private val mutiThread = Runnable {
+        var con = 0
+        var line: String? = ""
+        val option = "taipei"
+        var sumi = 0
+        var cou=1;
+        var placei = 0
+
+        try {
+            val puturl = URL("https://140.136.151.140/choose.php")
+            val putconnection = puturl.openConnection() as HttpsURLConnection
+            putconnection.setRequestProperty("Charset", "UTF-8")
+            putconnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
+            putconnection.requestMethod = "POST"
+            putconnection.doOutput = true
+            putconnection.doInput = true
+            putconnection.useCaches = false
+            val os: OutputStream = putconnection.outputStream
+            val out = DataOutputStream(os)
+            val `object` = JSONObject()
+            `object`.put("option", option)
+            out.writeBytes(`object`.toString())
+            out.flush()
+            out.close()
+            os.flush()
+            os.close()
+            val inputStream: InputStream = putconnection.inputStream
+            val bufReader = BufferedReader(InputStreamReader(inputStream, "utf-8"))
+
+            while (bufReader.readLine().also { line = it } != null) {
+
+                Log.d("asd",line.toString())
+                if (line != null) {
+                    if (con % 2 != 0) {
+                        place[placei] = line
+                           c.add("$cou $line")
+                        placei++
+                        cou++
+                    } else {
+                       // sum[sumi] = line
+                           d.add(line.toString())
+                        sumi++
+                    }
+                }
+                con = con + 1
+                result = result.toString() + line
+            }
+            sumi = 0
+            placei = 0
+            con = 1
+            result = place[2] + sum[2]
+            inputStream.close()
+        } catch (e: Exception) {
+            result = e.toString()
+        }
+       // runOnUiThread { textView.setText(result) }
+    }
+
+
+    fun handleSSLHandshake() {
+        try {
+            val trustAllCerts: Array<TrustManager> =
+                arrayOf<TrustManager>(object : X509TrustManager {
+                    val acceptedIssuers: Array<Any?>?
+                        get() = arrayOfNulls(0)
+
+                    override fun checkClientTrusted(certs: Array<X509Certificate?>?, authType: String?) {}
+                    override fun checkServerTrusted(certs: Array<X509Certificate?>?, authType: String?) {}
+                    override fun getAcceptedIssuers(): Array<X509Certificate> {
+                        TODO("Not yet implemented")
+                    }
+                })
+            val sc: SSLContext = SSLContext.getInstance("TLS")
+            // trustAllCerts信任所有的证书
+            sc.init(null, trustAllCerts, SecureRandom())
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory())
+            HttpsURLConnection.setDefaultHostnameVerifier(object : HostnameVerifier {
+                override fun verify(hostname: String?, session: SSLSession?): Boolean {
+                    return true
+                }
+            })
+        } catch (ignored: Exception) {
+        }
+    }
+
+
+
 }
 
-//設計新的類別定義水果的資料結構
-data class Item(
-    val photo: Int, //圖片
-    val name: String, //名稱
-    val price: Int //價格
-)
