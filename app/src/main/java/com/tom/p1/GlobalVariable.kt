@@ -9,7 +9,7 @@ class GlobalVariable : Application() {
          var opennoti:Boolean=false
         var opensound:Boolean=false
         var running:Boolean=false
-
+        var Userid:String=""
         var lon:Double=0.0
         var lat:Double=0.0
 

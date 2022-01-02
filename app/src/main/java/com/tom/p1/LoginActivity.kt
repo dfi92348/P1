@@ -48,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
         val userid = ed_userid.text.toString()
         val password = ed_passwd.text.toString()
         try {
+
             val puturl = URL("https://140.136.151.140/regist.php")
             val putconnection: HttpsURLConnection = puturl.openConnection() as HttpsURLConnection
             putconnection.setRequestProperty("Charset", "UTF-8")
@@ -86,6 +87,7 @@ class LoginActivity : AppCompatActivity() {
         val userid = ed_userid.text.toString()
         val password = ed_passwd.text.toString()
         try {
+            GlobalVariable.Userid=userid
             val puturl = URL("https://140.136.151.140/login.php")
             val putconnection: HttpsURLConnection = puturl.openConnection() as HttpsURLConnection
             putconnection.setRequestProperty("Charset", "UTF-8")

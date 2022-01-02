@@ -6,13 +6,16 @@
         <entry key="..\:/Users/ken09/p1/app/src/main/res/drawable-v24/edittextround.xml" value="0.1" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.141015625" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/accident_row.xml" value="0.264" />
-        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_accident_active.xml" value="0.1296875" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_accident_active.xml" value="0.2" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_camera.xml" value="0.264" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_camera1.xml" value="0.134765625" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_maps.xml" value="0.1296875" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_maps2.xml" value="0.12777093596059114" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_secactivity.xml" value="0.176" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/adapter_horizontal.xml" value="0.116796875" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/adapter_vertical.xml" value="0.116796875" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/buttonround.xml" value="0.155859375" />
       </map>
     </option>

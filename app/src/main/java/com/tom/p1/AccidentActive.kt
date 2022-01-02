@@ -2,100 +2,45 @@ package com.tom.p1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import kotlinx.android.synthetic.main.accident_row.view.*
-import kotlinx.android.synthetic.main.activity_accident_active.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
+import android.widget.*
 
 class AccidentActive : AppCompatActivity() {
-    val accidentdata= arrayListOf<Accident>(
-        Accident("109..","***市",1),
-        Accident("109..","***市",0),
-        Accident("109..","***市",2),
-        Accident("109..","***市",3),
-        Accident("110..","***市",1),
-        Accident("108..","***市",0),
-    )
-
-    companion object {
-        val TAG = AccidentActive::class.java.simpleName
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accident_active)
-        val database: AccidentDatabase =
-            Room.databaseBuilder(this, AccidentDatabase::class.java, "accident.db")
-                .build()
-
-        Executors.newSingleThreadExecutor().execute() {
-
-//            val data=database.accidentdao().findBylev()
-//            database.accidentdao().delete(data)
-
-
-            for(acc in accidentdata)
-                database.accidentdao().add(acc)
-
-
-
+        //將變數與 XML 元件綁定
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        //val gridView = findViewById<GridView>(R.id.gridView)
+        val listView = findViewById<ListView>(R.id.listView)
+        val count = ArrayList<String>() //儲存購買數量資訊
+        val item = ArrayList<Item>() //儲存水果資訊
+        val priceRange = IntRange(10, 100) //建立價格範圍
+        val array =
+            resources.obtainTypedArray(R.array.image_list) //從 R 類別讀取圖檔
+        for(i in 0 until 100) {
+            val photo = array.getResourceId(0,0) //水果圖片 Id
+            val name = "水果${i+1}" //水果名稱
+            val price = priceRange.random() //亂數產生價格
+            count.add("${i+1}個") //新增可購買數量資訊
+            item.add(Item(photo, name, price)) //新增水果資訊
         }
-
-
-
-
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val expenses = database.accidentdao().getAll()
-            Log.d(TAG, expenses.size.toString())
-            val adapter = object : RecyclerView.Adapter<ExpenseViewHolder>() {
-                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-                        : ExpenseViewHolder {
-                    val view = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.accident_row, parent, false)
-                    return ExpenseViewHolder(view)
-                }
-
-                override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
-                    val exp = expenses.get(position)
-                    holder.date.setText(exp.date)
-                    holder.loc.setText(exp.loc)
-                    holder.lev.setText(exp.lev.toString())
-                }
-
-                override fun getItemCount(): Int {
-                    return expenses.size
-                }
-            }
-            runOnUiThread {
-                recycler.setHasFixedSize(true)
-                recycler.layoutManager = LinearLayoutManager(this@AccidentActive)
-                recycler.adapter = adapter
-            }
-        }
-
-
-
-
-    }
-
-
-
-    class ExpenseViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
-        val date = itemView.exp_date
-        val loc = itemView.exp_loc
-        val lev = itemView.exp_lev
+        array.recycle() //釋放圖檔資源
+        //建立 ArrayAdapter 物件，並傳入字串與 simple_list_item_1.xml
+        spinner.adapter = ArrayAdapter<String>(this,
+            android.R.layout.simple_list_item_1, count)
+        //設定橫向顯示列數
+        //gridView.numColumns = 3
+        //建立 MyAdapter 物件，並傳入 adapter_vertical 作為畫面
+       // gridView.adapter = MyAdapter(this, item, R.layout.adapter_vertical)
+        //建立 MyAdapter 物件，並傳入 adapter_horizontal 作為畫面
+        listView.adapter = MyAdapter(this, item,
+            R.layout.adapter_horizontal)
     }
 }
+
+//設計新的類別定義水果的資料結構
+data class Item(
+    val photo: Int, //圖片
+    val name: String, //名稱
+    val price: Int //價格
+)

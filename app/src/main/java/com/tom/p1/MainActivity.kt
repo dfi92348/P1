@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         val Remind = findViewById<Button>(R.id.remind)
         val Location = findViewById<TextView>(R.id.location)
         val Voice = findViewById<TextView>(R.id.voice)
+        val wel=findViewById<TextView>(R.id.textView4)
 
 
         toMap.setOnClickListener {
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         toList.setOnClickListener {
 
 
-            val intent = Intent(this, AccidentActive::class.java)
+            val intent = Intent(this,AccidentActive::class.java)
             startActivity(intent)
 
         }
@@ -92,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        wel.text="用戶\n"+GlobalVariable.Userid
 
     }
 
@@ -168,7 +169,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fun showMaps() {
-            val intent = Intent(this, MapsActivity::class.java)
+            val intent = Intent(this, MapsActivity2::class.java)
             startActivity(intent)
         }
 
