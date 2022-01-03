@@ -92,11 +92,28 @@
         app:layout_constraintTop_toBottomOf="@+id/tolist"
         app:layout_constraintVertical_bias="0.365" />
 
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="324dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/buttonround"
+        android:text="個人資訊"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creat"
+        app:layout_constraintVertical_bias="0.26" />
+
     <TextView
         android:id="@+id/voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="172dp"
+        android:layout_marginEnd="160dp"
         android:text="語音提醒:\n關閉"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -105,7 +122,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remind"
-        app:layout_constraintVertical_bias="0.369" />
+        app:layout_constraintVertical_bias="0.67" />
 
     <TextView
         android:id="@+id/location"
@@ -118,10 +135,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/voice"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remind"
-        app:layout_constraintVertical_bias="0.369" />
+        app:layout_constraintVertical_bias="0.67" />
 
     <TextView
         android:id="@+id/textView4"

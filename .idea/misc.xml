@@ -9,6 +9,7 @@
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_accident_active.xml" value="0.2" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_camera.xml" value="0.264" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_camera1.xml" value="0.134765625" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_history.xml" value="0.190234375" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_maps.xml" value="0.1296875" />
@@ -16,7 +17,10 @@
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/activity_secactivity.xml" value="0.176" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/adapter_horizontal.xml" value="0.116796875" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/adapter_vertical.xml" value="0.116796875" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/array_adapter.xml" value="0.1" />
         <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/buttonround.xml" value="0.155859375" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/listitem.xml" value="0.1" />
+        <entry key="..\:/Users/ken09/p1/app/src/main/res/layout/listitem2.xml" value="0.10375615763546799" />
       </map>
     </option>
   </component>

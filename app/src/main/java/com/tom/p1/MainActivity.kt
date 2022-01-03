@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 ), 100
             )
         }
-
+        val history=findViewById<Button>(R.id.history)
         val Creat=findViewById<Button>(R.id.creat)
         val toMap = findViewById<Button>(R.id.tomap)
         val toList = findViewById<Button>(R.id.tolist)
@@ -69,6 +69,13 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+
+        history.setOnClickListener {
+            val intent = Intent(this,com.tom.p1.history::class.java)
+            startActivity(intent)
+
+        }
+
 
         Remind.setOnClickListener {
             val intent = Intent(this, secactivity::class.java)

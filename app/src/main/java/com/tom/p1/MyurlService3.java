@@ -179,10 +179,11 @@ public class MyurlService3 extends Service {
                 InputStream inputStream = putconnection.getInputStream();
                 BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
                 while((line = bufReader.readLine()) != null) {
-                    result=result+line+"\n";
+                    result=line;
                 }
 
                 inputStream.close();
+
 
 
 
@@ -192,10 +193,10 @@ public class MyurlService3 extends Service {
             }
 
             result="true";
-            if(result!= "false") {
+            if(!result.equals("false")) {
 
                 GlobalVariable.Companion.settf(true);
-
+                Log.d("TEST1", result);
             }
             if(GlobalVariable.Companion.getTorf()) {
                 Log.d("TEST", result);

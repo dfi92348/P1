@@ -1,56 +1,51 @@
 package com.tom.p1
 
-import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
-import kotlinx.android.synthetic.main.activity_accident_active.*
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.TextView
+import org.json.JSONObject
+import java.io.*
 import java.lang.Exception
+import java.net.URL
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import javax.net.ssl.*
-import org.json.JSONObject
-import java.io.*
-import java.net.URL
+import kotlin.concurrent.thread
+
+class history : AppCompatActivity() {
 
 
-class AccidentActive : AppCompatActivity() {
-    var result = ""
-     var option = "taipei"
-    var sum = arrayOfNulls<String>(200)
-    var place = arrayOfNulls<String>(200)
+   var result=""
+    var option = "taipei"
+    var sum = arrayOfNulls<String>(100)
+    var place = arrayOfNulls<String>(100)
     var c= arrayListOf("")
     var d=arrayListOf("")
-    var a= arrayListOf("台北","新北","新竹")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history)
+
         handleSSLHandshake();
-        setContentView(R.layout.activity_accident_active)
-
-
         val thread = Thread(mutiThread)
         thread.start()
 
+       Thread.sleep(1000)
 
-        //將變數與 XML 元件綁定
-       // val spinner = findViewById<Spinner>(R.id.spinner)
-        //val gridView = findViewById<GridView>(R.id.gridView)
-        val listView = findViewById<ListView>(R.id.listView)
-
-
+        val textv5 = findViewById<TextView>(R.id.textView5)
+        val textv6 = findViewById<TextView>(R.id.textView6)
+        val list =findViewById<ListView>(R.id.list)
 
 
 
+        textv5.text="用戶\n"+GlobalVariable.Userid
 
-         Thread.sleep(2500)
-      // spinner.adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,a)
+        textv6.text="新增紀錄"
+        list.adapter=ArrayAdapter(this, R.layout.listitem2,c)
 
 
-
-
-        listView.adapter =  ArrayAdapter(this,
-            R.layout.listitem,c)
     }
 
 
@@ -63,7 +58,7 @@ class AccidentActive : AppCompatActivity() {
         var placei = 0
 
         try {
-            val puturl = URL("https://140.136.151.140/choose.php")
+            val puturl = URL("https://140.136.151.140/useri.php")
             val putconnection = puturl.openConnection() as HttpsURLConnection
             putconnection.setRequestProperty("Charset", "UTF-8")
             putconnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
@@ -74,7 +69,7 @@ class AccidentActive : AppCompatActivity() {
             val os: OutputStream = putconnection.outputStream
             val out = DataOutputStream(os)
             val `object` = JSONObject()
-            `object`.put("option", option)
+            `object`.put("userid", GlobalVariable.Userid)
             out.writeBytes(`object`.toString())
             out.flush()
             out.close()
@@ -87,16 +82,19 @@ class AccidentActive : AppCompatActivity() {
 
                 Log.d("asd",line.toString())
                 if (line != null) {
-                    if (con % 2 != 0) {
-                        //place[placei] = line
-                           c.add("$cou $line")
-                       // placei++
-                        cou++
-                    } else {
-                       // sum[sumi] = line
-                           d.add(line.toString())
-                       // sumi++
-                    }
+                       c.add("$line")
+
+
+//                        if (con % 2 != 0) {
+//                    place[placei] = line
+//                        c.add("$cou $line")
+//                        placei++
+//                        cou++
+//                    } else {
+//                        // sum[sumi] = line
+//                        d.add(line.toString())
+//                        sumi++
+//                    }
                 }
                 con = con + 1
                 result = result.toString() + line
@@ -109,8 +107,9 @@ class AccidentActive : AppCompatActivity() {
         } catch (e: Exception) {
             result = e.toString()
         }
-       // runOnUiThread { textView.setText(result) }
+        // runOnUiThread { textView.setText(result) }
     }
+
 
 
     fun handleSSLHandshake() {
@@ -141,5 +140,6 @@ class AccidentActive : AppCompatActivity() {
 
 
 
-}
 
+
+}
